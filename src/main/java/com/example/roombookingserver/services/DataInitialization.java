@@ -13,6 +13,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -55,7 +56,7 @@ public class DataInitialization {
             userRepository.save(user);
             LocalDateTime booingDateTime = LocalDateTime.of(LocalDate.now(),LocalTime.of(10,30,00));
             Booking booking1 = new Booking();
-            booking1.setBookingDate(LocalDate.now());
+            booking1.setDate(new Date(2021,12,15));
             booking1.setStartTime(LocalTime.of(10,30,00));
             booking1.setEndTime(LocalTime.of(11,30,00));
             booking1.setLayout(Layout.USHAPE);
@@ -66,7 +67,7 @@ public class DataInitialization {
             bookingRepository.save(booking1);
 
             Booking booking2 = new Booking();
-            booking2.setBookingDate(LocalDate.now());
+            booking2.setDate(new Date(2021,12,15));
             booking2.setStartTime(LocalTime.of(13,00,00));
             booking2.setEndTime(LocalTime.of(14,30,00));
             booking2.setLayout(Layout.BOARD);

@@ -22,7 +22,7 @@ public class AngularUser {
     User user = new User();
     user.setId(this.id);
     user.setName(this.name);
-    user.setPassword("");
+    user.setPassword("test");
     return user;
   }
 }

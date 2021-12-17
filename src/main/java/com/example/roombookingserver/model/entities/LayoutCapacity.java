@@ -24,11 +24,13 @@ public class LayoutCapacity {
     @Column(nullable = false)
     private Layout layout;
 
+
     @Column(nullable = false)
     private Integer capacity;
 
     public LayoutCapacity(Layout layout, int capacity) {
         this.layout = layout;
         this.capacity =capacity;
+
     }
 }

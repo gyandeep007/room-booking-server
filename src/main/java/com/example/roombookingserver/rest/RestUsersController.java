@@ -8,6 +8,7 @@ import com.example.roombookingserver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,8 @@ public class RestUsersController {
     private UserRepository userRepository;
 
     @GetMapping
-    public List<AngularUser> getUsers(){
+    public List<AngularUser> getUsers() throws InterruptedException {
+        //Thread.sleep(3000);
         return userRepository.findAll().parallelStream().map(user -> new AngularUser(user)).collect(Collectors.toList());
     }
 
@@ -29,12 +31,25 @@ public class RestUsersController {
     }
 
     @PostMapping
-    public AngularUser addUser(@RequestBody AngularUser user){
-        return new AngularUser(userRepository.save(user.asUser()));
+    public AngularUser addUser(@RequestBody User user){
+        return new AngularUser(userRepository.save(user));
     }
 
     @PutMapping
-    public AngularUser updateUser(@RequestBody AngularUser user){
+    public AngularUser updateUser(@RequestBody AngularUser user, HttpServletRequest request){
+        System.out.println("request received "+request);
         return new AngularUser(userRepository.save(user.asUser()));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id){
+        userRepository.deleteById(id);
+    }
+
+    @GetMapping("/resetPassword/{id}")
+    public void resetPassword(@PathVariable Long id){
+        User user = userRepository.findById(id).get();
+        user.setPassword("secret");
+        userRepository.save(user);
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -35,7 +36,8 @@ public class Booking {
 
     private String title;
 
-    private LocalDate bookingDate;
+    @Column(name = "booking_date")
+    private Date date;
 
     private LocalTime startTime;
 
