@@ -26,13 +26,21 @@ public class RestBookingsController {
         bookingRepository.deleteById(id);
     }
 
-//    @GetMapping
-//    public List<Booking> getAllBookings(){
-//       return bookingRepository.findAll();
-//    }
+
 
     @GetMapping
     public Booking getBookingById(@RequestParam Long id){
        return bookingRepository.findById(id).get();
+    }
+
+    @PostMapping
+    public Booking addBooking(@RequestBody Booking booking){
+        System.out.println("booking layout "+booking.getLayout());
+       return bookingRepository.save(booking);
+    }
+
+    @PutMapping
+    public Booking updateBooking(@RequestBody Booking booking){
+        return bookingRepository.save(booking);
     }
 }

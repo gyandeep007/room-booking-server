@@ -19,8 +19,7 @@ public class RestUsersController {
     private UserRepository userRepository;
 
     @GetMapping
-    public List<AngularUser> getUsers() throws InterruptedException {
-        //Thread.sleep(3000);
+    public List<AngularUser> getUsers()  {
         return userRepository.findAll().parallelStream().map(user -> new AngularUser(user)).collect(Collectors.toList());
     }
 

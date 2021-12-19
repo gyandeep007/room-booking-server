@@ -18,11 +18,7 @@ public class RestRoomsController {
 
     @GetMapping
     public List<Room> getRooms(HttpServletResponse response) throws Exception{
-        // this will return the data after 3 sec.
-           Thread.sleep(3000);
            return roomRepository.findAll();
-         //  response.setStatus(402);
-          // return null;
     }
 
     @GetMapping("/{roomId}")

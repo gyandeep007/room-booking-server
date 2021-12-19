@@ -36,6 +36,7 @@ public class Booking {
 
     private String title;
 
+
     @Column(name = "booking_date")
     private Date date;
 
