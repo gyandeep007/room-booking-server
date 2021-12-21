@@ -1,5 +1,6 @@
 package com.example.roombookingserver.rest;
 
+import com.example.roombookingserver.model.entities.LayoutCapacity;
 import com.example.roombookingserver.model.entities.Room;
 import com.example.roombookingserver.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,10 @@ public class RestRoomsController {
      Room originalRoom = roomRepository.findById(updatedRoom.getId()).get();
      originalRoom.setName(updatedRoom.getName());
      originalRoom.setLocation(updatedRoom.getLocation());
-     originalRoom.setCapacities(updatedRoom.getCapacities());
+     for(LayoutCapacity lc : updatedRoom.getCapacities()){
+         originalRoom.setCapacity(lc);
+     }
+    // originalRoom.setCapacities(updatedRoom.getCapacities());
         return roomRepository.save(originalRoom);
     }
 
